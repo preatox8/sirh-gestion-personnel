@@ -15,4 +15,10 @@ public class ListerCollaborateursController extends HttpServlet {
 		req.setAttribute("listeNoms", Arrays.asList("Robert", "Jean", "Hugues"));
 		req.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(req, resp);
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+	}
+
 }
