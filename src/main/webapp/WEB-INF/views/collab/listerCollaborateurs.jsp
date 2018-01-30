@@ -1,4 +1,4 @@
-<%@ page import="java.util.List, dev.sgp.entite.Collaborateur"%>
+<%@ page import="java.util.List, dev.sgp.entite.Collaborateur, dev.sgp.entite.Departement"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,9 +35,9 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
-				<a href="./creer-collab.html" type="button"
-					class="btn btn-secondary btn-sm float-right">Ajouter un nouveau
-					collaborateur</a>
+				<a href="<%=request.getContextPath()%>/collaborateurs/editer"
+					type="button" class="btn btn-secondary btn-sm float-right">Ajouter
+					un nouveau collaborateur</a>
 			</div>
 		</div>
 
@@ -69,23 +69,33 @@
 			</div>
 		</div>
 
+
+
 		<div class="row">
 			<div class="col">
 				<div class="input-group mb-3">
 					<p class="texte-justify float-right">Filtrer par département :</p>
 					&nbsp;&nbsp; <select class="custom-select" id="inputGroupSelect02">
-						<option selected>Tous</option>
-						<option value="1">Comptablilité</option>
-						<option value="2">Ressources Humaines</option>
-						<option value="3">Informatique</option>
+											<option selected>Tous</option>
+					
+						<%
+							List<Departement> listeDepart = (List<Departement>) request.getAttribute("listeDepartement");
+							for (Departement departement : listeDepart) {
+						%>		
+								<option value="<%=departement.getId()%>"><%=departement.getNom()%></option>
+						<% 
+							}
+						%>						
 					</select>
 				</div>
 			</div>
 		</div>
+
+
 		<div class="row">
 
 			<%
-				List<Collaborateur> listecollab = (List<Collaborateur>) request.getAttribute("listecollaborateur");
+				List<Collaborateur> listecollab = (List<Collaborateur>) request.getAttribute("listeCollaborateur");
 				for (Collaborateur collaborateur : listecollab) {
 			%>
 
@@ -107,7 +117,7 @@
 									<strong>Département : </strong>Ressources Humaines
 								</p>
 								<p class="card-text">
-									<strong>Email : </strong><%= collaborateur.getEmailpro() %>
+									<strong>Email : </strong><%=collaborateur.getEmailpro()%>
 								</p>
 								<p class="card-text">
 									<strong>Téléphone : </strong>6666666666

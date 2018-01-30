@@ -2,7 +2,6 @@ package dev.sgp.web;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dev.sgp.entite.Collaborateur;
 import dev.sgp.service.CollaborateurService;
+import dev.sgp.service.DepartementService;
 import dev.sgp.util.Constantes;
 
 public class EditerCollaborateurController extends HttpServlet {
@@ -18,15 +18,18 @@ public class EditerCollaborateurController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// A ajouter
+				CollaborateurService collabService = Constantes.COLLAB_SERVICE;
+				DepartementService departService = Constantes.DEPART_SERVICE;
+				
+				
+				req.setAttribute("listeDepartement", departService.listerDepartement());
+				req.setAttribute("listeCollaborateur", collabService.listerCollaborateurs());
 		req.getRequestDispatcher("/WEB-INF/views/collab/ajouterCollaborateurs.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// recupere la valeur d'un parametre dont le nom est avecPhoto
-		Boolean paramMissing = false;
-		StringBuilder resError = new StringBuilder("Les paramètres suivants sont incorrects : ");
 		
 		String avecNom = req.getParameter("nom");
 		String avecPrenom = req.getParameter("prenom");
@@ -48,42 +51,15 @@ public class EditerCollaborateurController extends HttpServlet {
 				avecMail,
 				null,
 				null,
-				true
+				true,
+				null,
+				null
 				);
 		
 		Constantes.COLLAB_SERVICE.sauvegarderCollaborateur(collab);
-		req.setAttribute("listecollaborateur", Constantes.COLLAB_SERVICE.listerCollaborateurs());
+		req.setAttribute("listeCollaborateur", Constantes.COLLAB_SERVICE.listerCollaborateurs());
+		req.setAttribute("listeDepartement", Constantes.DEPART_SERVICE.listerDepartement());
 		req.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(req, resp);
-
-		/*if(avecMatricule.isEmpty()) {
-            paramMissing = true;
-            resError.append("matricule");
-        }
-        if(avecTitre.isEmpty()) {
-            paramMissing = true;
-            resError.append("titre");
-        }
-        if(avecNom.isEmpty()) {
-            paramMissing = true;
-            resError.append("nom");
-        }
-        if(avecPrenom.isEmpty()) {
-            paramMissing = true;
-            resError.append("prenom");
-        }
-        if(avecNumeSecuSociale.isEmpty()) {
-            paramMissing = true;
-            resError.append("numsecusociale");
-        }
-        if(paramMissing) {
-            resp.sendError(400, resError.toString());
-        } else {
-			resp.setStatus(201);
-			resp.getWriter().write("Creation d’un collaborateur avec les informations suivantes : " + "matricule : " + avecMatricule + ", nom : " + avecNom + ", prenom : " + avecPrenom + ", titre : " + avecTitre + ", Numéro de sécurité sociale : " + avecNumeSecuSociale);
-		}
-		*/
-		
-		
 
 	}
 }

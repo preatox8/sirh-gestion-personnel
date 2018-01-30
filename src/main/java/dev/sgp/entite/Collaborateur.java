@@ -1,7 +1,6 @@
 package dev.sgp.entite;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 public class Collaborateur {
@@ -16,7 +15,8 @@ public class Collaborateur {
 	private String photo;
 	private ZonedDateTime dateheurecreation;
 	private Boolean actif;
-	
+	private String intitulePoste;
+	private Departement departement;
 	
 	
 	
@@ -140,8 +140,34 @@ public class Collaborateur {
 	public void setDateheurecreation(ZonedDateTime dateheurecreation) {
 		this.dateheurecreation = dateheurecreation;
 	}
+	
+	/**
+	 * @return the intitulePoste
+	 */
+	public String getIntitulePoste() {
+		return intitulePoste;
+	}
+	/**
+	 * @param intitulePoste the intitulePoste to set
+	 */
+	public void setIntitulePoste(String intitulePoste) {
+		this.intitulePoste = intitulePoste;
+	}
+	/**
+	 * @return the departement
+	 */
+	public Departement getDepartement() {
+		return departement;
+	}
+	/**
+	 * @param departement the departement to set
+	 */
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
 	public Collaborateur(String matricule, String nom, String prenom, LocalDate datenaissance, String adresse,
-			String numsecusociale, String emailpro, String photo, ZonedDateTime dateheurecreation, Boolean actif) {
+			String numsecusociale, String emailpro, String photo, ZonedDateTime dateheurecreation, Boolean actif,
+			String intitulePoste, Departement departement) {
 		super();
 		this.matricule = matricule;
 		this.nom = nom;
@@ -153,6 +179,8 @@ public class Collaborateur {
 		this.photo = photo;
 		this.dateheurecreation = dateheurecreation;
 		this.actif = actif;
+		this.intitulePoste = intitulePoste;
+		this.departement = departement;
 	}
 	public Collaborateur() {
 		super();
