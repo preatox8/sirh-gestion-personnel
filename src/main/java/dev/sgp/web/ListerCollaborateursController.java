@@ -23,5 +23,7 @@ public class ListerCollaborateursController extends HttpServlet {
 		req.setAttribute("listeCollaborateur", collabService.listerCollaborateurs());
 		req.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(req, resp);
 	}
+	
+	
 
 }

@@ -14,7 +14,7 @@ import dev.sgp.service.DepartementService;
 import dev.sgp.util.Constantes;
 
 public class EditerCollaborateurController extends HttpServlet {
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// A ajouter
@@ -30,7 +30,6 @@ public class EditerCollaborateurController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
 		String avecNom = req.getParameter("nom");
 		String avecPrenom = req.getParameter("prenom");
 		String avecdateNaissance = req.getParameter("datenaissance");
@@ -42,7 +41,6 @@ public class EditerCollaborateurController extends HttpServlet {
 		
 		
 		Collaborateur collab = new Collaborateur(
-				"M01",
 				avecNom,
 				avecPrenom,
 				newDateNaissance,
@@ -52,6 +50,9 @@ public class EditerCollaborateurController extends HttpServlet {
 				null,
 				null,
 				true,
+				null,
+				null,
+				null,
 				null,
 				null
 				);

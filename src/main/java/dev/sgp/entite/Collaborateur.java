@@ -2,6 +2,7 @@ package dev.sgp.entite;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.Collection;
 
 public class Collaborateur {
 	
@@ -17,6 +18,11 @@ public class Collaborateur {
 	private Boolean actif;
 	private String intitulePoste;
 	private Departement departement;
+	private String banque;
+	private String bic;
+	private String iban;
+	
+	private static int nbr_Instance =0;
 	
 	
 	
@@ -165,11 +171,53 @@ public class Collaborateur {
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}
-	public Collaborateur(String matricule, String nom, String prenom, LocalDate datenaissance, String adresse,
-			String numsecusociale, String emailpro, String photo, ZonedDateTime dateheurecreation, Boolean actif,
-			String intitulePoste, Departement departement) {
+	
+	public Collaborateur() {
 		super();
-		this.matricule = matricule;
+	}
+	/**
+	 * @return the banque
+	 */
+	public String getBanque() {
+		return banque;
+	}
+	/**
+	 * @param banque the banque to set
+	 */
+	public void setBanque(String banque) {
+		this.banque = banque;
+	}
+	/**
+	 * @return the bic
+	 */
+	public String getBic() {
+		return bic;
+	}
+	/**
+	 * @param bic the bic to set
+	 */
+	public void setBic(String bic) {
+		this.bic = bic;
+	}
+	/**
+	 * @return the iban
+	 */
+	public String getIban() {
+		return iban;
+	}
+	/**
+	 * @param iban the iban to set
+	 */
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+	public Collaborateur(String nom, String prenom, LocalDate datenaissance, String adresse,
+			String numsecusociale, String emailpro, String photo, ZonedDateTime dateheurecreation, Boolean actif,
+			String intitulePoste, Departement departement, String banque, String bic, String iban) {
+		
+		super();
+		Collaborateur.nbr_Instance++;
+		this.matricule = "M" + Collaborateur.nbr_Instance;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.datenaissance = datenaissance;
@@ -181,9 +229,9 @@ public class Collaborateur {
 		this.actif = actif;
 		this.intitulePoste = intitulePoste;
 		this.departement = departement;
-	}
-	public Collaborateur() {
-		super();
+		this.banque = banque;
+		this.bic = bic;
+		this.iban = iban;
 	}
 	
 	

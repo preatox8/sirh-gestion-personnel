@@ -101,7 +101,7 @@
 
 			<div class="col-12 col-md-4 col-xl-4 ">
 				<div class="card">
-					<div class="card-header"><%=collaborateur.getNom()%><%=collaborateur.getPrenom()%></div>
+					<div class="card-header"><%=collaborateur.getNom()%> <%=collaborateur.getPrenom()%></div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-12 col-xl-6">
@@ -122,8 +122,11 @@
 								<p class="card-text">
 									<strong>Téléphone : </strong>6666666666
 								</p>
-								<a href="./editer-collab.html"
-									class="btn btn-primary float-right">Editer</a>
+								<form method="POST" action="/collaborateurs/modifier">
+								<input type="hidden" name="matricule" value="<%=collaborateur.getMatricule()%>">
+									<a id="editer" href="<%=request.getContextPath()%>/collaborateurs/modifier"
+										class="btn btn-primary float-right">Editer</a>
+								</form>	
 							</div>
 						</div>
 					</div>
